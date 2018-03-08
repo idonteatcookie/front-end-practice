@@ -1,0 +1,29 @@
+// 设置过渡的属性 时间
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+// 设置转换时 以哪个点为基准点做变换
+@mixin transform-origin($origin) {
+    -webkit-transform-origin: $origin;
+    -moz-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    transform-origin: $origin;
+}
+// 设置缩放
+@mixin scale($origin) {
+    -webkit-transform: scale($origin);
+    -moz-transform: scale($origin);
+    -ms-transform: scale($origin);
+    -o-transform: scale($origin);
+    transform: scale($origin);
+}
+// 设置透明度
+@mixin opacity($opcity) {
+    opacity: $opcity;
+    filter: alpha(opacity=$opcity * 100);
+}

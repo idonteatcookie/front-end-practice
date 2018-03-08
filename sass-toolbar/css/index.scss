@@ -1,0 +1,150 @@
+@import "mixin";
+@import "style";
+
+$toolbar-size: 50px;
+.toolbar {
+    position: fixed;            // 固定定位
+    right: 10px;
+    bottom: 10px;
+}
+.toolbar-item {
+    position: relative;         // 子代使用absulote定位 所以这里要设置relative定位
+    display: block;             // 因为a标签是内联元素 默认不能设置宽高
+    margin-top: 1px;            // 几个小方块的间距为1px
+    width: $toolbar-size;
+    height: $toolbar-size;
+
+    &:after {
+        content: '';
+        position: absolute;
+        right: $toolbar-size;
+        bottom: 0;
+        width: 300px;
+        height: 300px;
+        background-repeat: no-repeat;
+        white-space: pre;
+        @include opacity(0);
+        @include scale(0.01);
+        @include transition(all 1s);
+        @include transform-origin(95% 95%);
+    }
+
+    &:hover {    // 当鼠标经过的时候 要向上移动显示文字说明
+        .toolbar-btn {
+            &:before {
+                top: -$toolbar-size;
+            }
+            &:after {
+                top: 0;
+            }
+        }
+        &:after {
+            @include opacity(1);    // 设置透明度变为完全不透明
+            @include scale(1);      // 设置大小变为100%
+        }
+    }
+}
+.toolbar-item-qq {
+    &:after {
+        background-image: url(../img/qq.png);
+        width: 180px;
+        height: 180px;
+    }
+
+    .toolbar-btn {
+        @extend .icon-qq;    // 继承字体样式 将 before 元素变为字体图标
+        &:before {
+            color: #26b8f2;
+        }
+
+        &:after {
+            content: '加我\AQQ'; // \A 表示换行
+        }
+    }
+}
+.toolbar-item-pay {
+    &:after {
+        background-image: url(../img/pay.png);
+    }
+
+    .toolbar-btn {
+        @extend .icon-paypal;    // 继承字体样式 将 before 元素变为字体图标
+        &:before {
+            color: #f3281b;
+        }
+
+        &:after {
+            content: '为我\A捐款'; // \A 表示换行
+        }
+    }
+}
+.toolbar-item-wechat {
+    &:after {
+        content: "\A不告\A诉你";
+        color: #fff;
+        font-size: 20px;
+        line-height: 1.2;
+        text-align: center;
+        background-color: #000;
+        width: 100px;
+        height: 100px;
+    }
+
+    .toolbar-btn {
+        @extend .icon-wechat;    // 继承字体样式 将 before 元素变为字体图标
+        &:before {
+            color: #46b942;
+        }
+
+        &:after {
+            content: '加我\A微信'; // \A 表示换行
+        }
+    }
+}
+.toolbar-item-cool {
+    .toolbar-btn {
+        @extend .icon-cool;    // 继承字体样式 将 before 元素变为字体图标
+        &:before {
+            color: #000;
+        }
+
+        &:after {
+            content: '我最\A可爱'; // \A 表示换行
+        }
+    }
+}
+.toolbar-btn {
+    &, &:before, &:after {
+        width: $toolbar-size;
+        height: $toolbar-size;
+        position: absolute;
+        left: 0;
+    }
+
+    top: 0;
+    overflow: hidden;            // 让文字默认位于溢出位置 然后将溢出部分隐藏
+    @extend [class^="icon-"];    // 继承字体的样式
+
+    &:before, &:after {
+        content: '';
+        color: #fff;
+        text-align: center;
+        @include transition(top 1s);
+    }
+
+    &:before {                   // 默认的图标显示
+        top: 0;
+        background-color: #d0d6d9;
+        font-size: 30px;
+        line-height: $toolbar-size;
+    }
+
+    &:after {                    // 鼠标悬浮时的文字显示
+        top: $toolbar-size;
+        background-color: #98a1a6;
+        font-size: 12px;
+        padding-top: 12px;
+        line-height: 1.2;
+        white-space: pre;        // 为了实现文字换行
+    }
+}
