@@ -1,0 +1,236 @@
+$nav-height: 10vh;
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.nav {
+    background-color: #222;
+}
+.logo {
+    float: left;
+    height: $nav-height;
+    line-height: $nav-height;
+    padding-left: 50px;
+    color: #fff;
+    font-weight: bolder;
+}
+.nav-right {
+    float: right;
+    height: $nav-height;
+}
+.nav-right li {
+    float: left;
+}
+.nav-right a {
+    display: block;
+    line-height: $nav-height;
+    width: 50px;
+    margin-right: 20px;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+}
+.banner {
+    height: 100vh - $nav-height;
+    background-color: #5a5a5a;
+    text-align: center;
+}
+.title {
+    font-size: 36px;
+    color: #e3e2c9;
+    padding-top: 100px;
+    padding-bottom: 30px;
+}
+.sub-title {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #bebebe;
+    padding: 20px 0;
+}
+button {
+    width: 100px;
+    height: 40px;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 0;
+    border-radius: 10px;
+    outline: none; // 去掉选中时发光效果
+}
+.banner-btn {
+    background-color: #464646;
+    color: #fff;
+    margin-top: 20px;
+    &:active {
+        background-color: #353434;
+    }
+}
+.go-down {
+    display: block;
+    margin-top: 250px;
+    text-decoration: none;
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+}
+.green-section {
+    background-color: #21b2a6;
+    text-align: center;
+    padding-bottom: 100px;
+}
+.hr {
+    width: 40%;
+    margin: 0 auto;
+    height: 1px;
+    background-color: #fff;
+}
+.icon-group {
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.icon {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    border: 1px solid #4d7b77;
+    margin: 0 20px;
+    transform: rotate(45deg);
+    transition: transform 1s;
+    font-size: 0;
+    line-height: 20px;
+    background-image: url(../images/pic03.jpg);
+    background-repeat: no-repeat;
+    &:hover {
+        transform: rotate(0);
+        color: #fff;
+        font-size: 16px;
+    }
+}
+.gray-section {
+    background-color: #2b353e;
+}
+.img1 {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+.img2 {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+.text-section, .img-section {
+    float: left;
+}
+.text-section {
+    height: 300px;
+    width: 60%;
+}
+.text-section .content {
+    padding-left: 200px;
+}
+h2 {
+    font-size: 24px;
+    line-height: 1.5;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+.text-section h2 {
+    color: #e3e2c9;
+    padding-top: 150px;
+}
+.img-section {
+    width: 40%;
+    height: 400px;
+    background-image: url(../images/pic01.jpg);
+}
+.purple-section {
+    background-color: #505393;
+    padding-bottom: 100px;
+    .inner {
+        padding: 0 250px;
+        header {
+            text-align: center;
+        }
+    }
+}
+.cube-group {
+    padding-top: 50px;
+}
+.cube {
+    width: 50%;
+    float: left;
+    padding: 50px 0;
+    .content {
+        width: 60%;
+        height: 150px;
+        margin: 0 auto;
+    }
+}
+.cube1 {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+.cube2 {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+.cube3 {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+.cube4 {
+    background-color: rgba(0, 0, 0, 0.16);
+}
+.cube5 {
+    background-color: rgba(0, 0, 0, 0.20);
+}
+.cube6 {
+    background-color: rgba(0, 0, 0, 0.24);
+}
+.black-section {
+    padding: 100px 0 100px 0;
+    background-image: url(../images/pic02.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .inner {
+        width: 800px;
+        margin: 0 auto;
+
+        header {
+            float: left;
+            width: 40%;
+
+            h2  {
+                color: #fff;
+            }
+
+            .sub-title {
+                color: #fff;
+            }
+        }
+
+        .btn-group {
+            width: 40%;
+            float:  right;
+            button {
+                width: 200px;
+                color: #fff;
+            }
+            .btn1 {
+                background-color: #ed4933;
+                margin-bottom: 15px;
+                &:active {
+                    background-color: #ea5f4c;
+                }
+            }
+            .btn2 {
+                background-color: rgba(255, 255, 255, 0);
+                border: 2px solid #fff;
+                &:active {
+                    background-color: rgba(255, 255, 255, 0.04);
+                }
+            }
+        }
+    }
+}
+.footer {
+    background-color: #313131;
+    color: #979797;
+    line-height: 80px;
+    text-align: center;
+}
