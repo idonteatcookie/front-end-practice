@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>提示框效果</title>
+</head>
+<style type="text/css">
+body {
+	font: 12px/1.5 Tahoma;
+	box-sizing: border-box;
+}
+.clearfix:after {
+	clear: both;
+	content: "";
+	display: table;
+}
+.wrapper {
+	width: 572px; /* (100+2)*5+60+2 */
+	margin: 0 auto;
+	border: 1px solid #000;
+	padding: 10px 0 0 10px;
+	box-sizing: border-box; /* 你妹的这个属性没有继承性 */
+}
+header {
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 30px;
+	margin-bottom: 10px;
+}
+ul {
+	padding: 0;
+	margin: 0;
+}
+li {
+	list-style-type: none;
+	display: block;
+	height: 100px;
+	width: 100px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #000;
+	float: left;
+	position: relative;
+}
+li img {
+	display: none;
+}
+li:hover img {
+	display: block;
+	position: absolute;
+	top: -15px;
+	left: -15px;
+	border: 2px solid #aaa;
+	z-index: 1;
+}
+li:hover a {
+	display: none;
+}
+li a {
+	display: block;
+	background-color: #f0f0f0;
+	height: 80px;
+	width: 80px;
+	padding: 10px;
+	color: #666;
+	text-decoration: none;
+}
+li a strong {
+	display: block;
+}
+
+</style>
+<body>
+	<div class="wrapper">
+		<header>
+			名车车标展示-鼠标移过显示车标
+		</header>
+		<ul class="clearfix">
+			<li>
+	            <a href="javascript:;" title="BMW 宝马汽车"><strong>BMW</strong>宝马汽车</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/1.jpg" alt="BMW 宝马汽车" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Alfa Romeo 阿尔法-罗米欧"><strong>Alfa Romeo</strong> 阿尔法-罗米欧</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/2.jpg" alt="Alfa Romeo 阿尔法-罗米欧" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Skoda 斯柯达"><strong>Skoda</strong> 斯柯达</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/3.jpg" alt="Skoda 斯柯达" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Volkswagen 大众汽车"><strong>Volkswagen</strong> 大众汽车</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/4.jpg" alt="Volkswagen 大众汽车" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Saab 萨布牌轿"><strong>Saab</strong> 萨布牌轿车</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/5.jpg" alt="Saab 萨布牌轿" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Lamborghini 兰博基尼"><strong>Lamborghini</strong> 兰博基尼</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/6.jpg" alt="Lamborghini 兰博基尼" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Porsche 保时捷"><strong>Porsche</strong> 保时捷</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/7.jpg" alt="Porsche 保时捷" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Peugeot 标致"><strong>Peugeot</strong> 标致</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/8.jpg" alt="Peugeot 标致" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Mercedes1 梅赛德斯 奔驰"><strong>Mercedes1</strong> 梅赛德斯 奔驰</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/9.jpg" alt="Mercedes1 梅赛德斯 奔驰" />
+	        </li>
+	        <li>
+	            <a href="javascript:;" title="Buick 别克汽车"><strong>Buick</strong> 别克汽车</a>
+	            <img src="http://fgm.cc/learn/lesson2/img/10.jpg" alt="Buick 别克汽车" />
+	        </li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

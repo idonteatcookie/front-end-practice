@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>setTimeout应用</title>
+	<style type="text/css">
+		body,div,ul,li,p{margin:0;padding:0;}
+		body{font:12px/1.5 Arial;}
+		ul{list-style-type:none;}
+		a{text-decoration: none;}
+
+		#nav ul {
+			height: 14px;
+			padding: 11px 5px;
+		    background-color: #9c9c9c;
+		    width: 669px; /** 80*8+1*7+11*2=640+7+22=669 */
+		    margin: 0 auto;
+		    border-radius: 3px;
+            position: relative;
+		}
+		#nav li {
+			float: left;
+			line-height: 14px;
+		    font-size: 14px;
+            width: 80px;
+		    text-align: center;
+		}
+		#nav li:not(:last-child) {
+		    border-right: 1px solid #cecece;
+		}
+		#nav li>a {
+			color: #fff;
+            display: block;
+		}
+		#nav li>a:hover {
+			color: #ffc59c;
+		}
+		.subnav {
+			position: absolute;
+            display: none;
+            white-space: nowrap;
+            top: 40px;
+            background-color: #ffc59c;
+            padding: 5px;
+            border-radius: 3px;
+            color: #929292;
+		}
+        .subnav a {
+            color: #929292;
+        }
+		#nav li:hover .subnav {
+			display: block;
+		}
+        .arrow {
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            border-width: 5px 4px 5px;
+            border-bottom-color: #FFC5A9;
+            border-color: #0000 #0000 #ffc5a9;
+            border-style: solid;
+        }
+
+	</style>
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li><a href="javascript:;">站长之家 </a></li>
+        <li>
+            <a href="javascript:;">行业资讯</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">业界动态</a>|
+                        <a href="javascript:;">收购融资</a>|
+                        <a href="javascript:;">门户动态</a>|
+                        <a href="javascript:;">搜索引擎</a>|
+                        <a href="javascript:;">网络游戏</a>|
+                        <a href="javascript:;">电子商务</a>|
+                        <a href="javascript:;">广告传媒</a>|
+                        <a href="javascript:;">厂商开发</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">站长在线</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">站长报道</a>|
+                        <a href="javascript:;">好站推荐</a>|
+                        <a href="javascript:;">站长聚会</a>|
+                        <a href="javascript:;">站长访谈</a>|
+                        <a href="javascript:;">站长茶馆</a>|
+                        <a href="javascript:;">网站排行</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">网站运营</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">建站经验</a>|
+                        <a href="javascript:;">策划盈利</a>|
+                        <a href="javascript:;">搜索优化</a>|
+                        <a href="javascript:;">网站推广</a>|
+                        <a href="javascript:;">免费资源</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">设计在线</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">酷站推荐</a>|
+                        <a href="javascript:;">网页设计</a>|
+                        <a href="javascript:;">WEB标准</a>|
+                        <a href="javascript:;">视频处理</a>|
+                        <a href="javascript:;">设计活动</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">网络编程</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">Asp编程</a>|
+                        <a href="javascript:;">Php编程</a>|
+                        <a href="javascript:;">.Net编程</a>|
+                        <a href="javascript:;">Xml编程</a>|
+                        <a href="javascript:;">Access</a>|
+                        <a href="javascript:;">Mssql</a>|
+                        <a href="javascript:;">Mysql</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">联盟资讯</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">联盟动态</a>|
+                        <a href="javascript:;">联盟介绍</a>|
+                        <a href="javascript:;">联盟点评</a>|
+                        <a href="javascript:;">网赚技巧</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:;">服务器</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>        	
+                    <span>
+                        <a href="javascript:;">Web服务器</a>|
+                        <a href="javascript:;">Ftp服务器</a>|
+                        <a href="javascript:;">Mail服务器</a>|
+                        <a href="javascript:;">Dns服务器</a>|
+                        <a href="javascript:;">Win服务器</a>|
+                        <a href="javascript:;">Linux服务器</a>|
+                        <a href="javascript:;">安全防护</a>|
+                        <a href="javascript:;">虚拟主机</a>
+                    </span>
+                </p>
+            </div>
+        </li>        
+    </ul> 
+    <!-- 这里使用setTimeout是因为鼠标移出主菜单时子菜单瞬间消失，无法点击子菜单 -->
+    <script type="text/javascript">
+        const oli = document.getElementsByTagName('li')
+        const oSubnav = document.getElementsByClassName('subnav')
+        const oul = document.getElementsByTagName('ul')[0]
+        const oArrow = document.getElementsByClassName('arrow')
+        let timer = null
+        for (let i = 0; i < oli.length; i++) {
+            oli[i].onmouseover = function() {
+                for (let j = 0; j < oSubnav.length; j++) {
+                    oSubnav[j].style.display = 'none'
+                }
+                timer && clearTimeout(timer)
+                if (i) {
+                    oSubnav[i-1].style.display = 'block'
+                    const totWidth = oul.offsetWidth
+                    const width = oSubnav[i-1].offsetWidth
+                    const start = this.offsetLeft
+
+                    if (start + width > totWidth) {
+                        oSubnav[i-1].style.right = 0
+                        oArrow[i-1].style.left = start - (totWidth - width) + 15 + 'px'
+                    } else {
+                        oSubnav[i-1].style.left = start + 'px'
+                    }
+                }
+            }
+            for (let j = 0; j < oSubnav.length; j++) {
+                oSubnav[j].onmouseover = function (event) {
+                    timer && clearTimeout(timer);
+                    // (event || window.event).cancelBubble = true;
+                    // event.stopPropagation()
+                }
+            }
+            oli[i].onmouseout = function () {
+                timer = setTimeout(function () {
+                    i && (oSubnav[i-1].style.display = 'none')
+                }.bind(this),300)
+            }
+        }
+    </script>  
+</div>
+</body>
+</html>

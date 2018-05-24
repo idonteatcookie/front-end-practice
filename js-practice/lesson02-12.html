@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>复选框（checkbox）全选/全不选/反选</title>
+</head>
+<style type="text/css">
+body {
+	font: 12px/1.5 Tahoma;
+}
+.wrapper {
+	width: 120px;
+	padding: 3px;
+	background-color: #fafafa;
+	border: 1px solid #000;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+input {
+	width: 18px;
+}
+header {
+	border-bottom: 1px solid #000;
+	line-height: 30px;
+	height:35px;
+}
+header a {
+	text-decoration: none;
+	color: #419aff;
+}
+header label {
+	display: inline-block;
+	width: 35px;
+}
+.doc {
+	text-align: center;
+}
+</style>
+<body>
+	<div class="wrapper">
+		<header>
+			<input type="checkbox" id="checkAll" /><label>全选</label><a href="javascript:;">反选</a>
+		</header>
+		<ul>
+			<p><input type="checkbox" name="item" /><label>选项（一）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（二）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（三）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（四）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（五）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（六）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（七）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（八）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（九）</label></p>
+	        <p><input type="checkbox" name="item" /><label>选项（十）</label></p>
+		</ul>
+	</div>
+	<div class="doc">
+		<span>1、切换全选/全不选文字；2、根据选中个数更新全选框状态；</span>
+	</div>
+	<script type="text/javascript">
+		var oA = document.getElementsByTagName("a")[0]
+		var oInput = document.getElementsByTagName("input")
+		let checkNum = 0
+		for (let i = 1; i < oInput.length; i++) {
+			oInput[i].onclick = function() {
+				if (this.checked) {
+					checkNum++
+				} else {
+					checkNum--
+				}
+				if (checkNum === 10) {
+					oInput[0].checked = true
+				} else {
+					oInput[0].checked = false
+				}
+			}
+		}
+		oInput[0].onclick = function() {
+			if (checkNum === 10) {
+				for (let i = 1; i < oInput.length; i++) {
+					oInput[i].checked = false
+					checkNum = 0
+				}
+			} else {
+				for (let i = 1; i < oInput.length; i++) {
+					oInput[i].checked = true
+					checkNum = 10
+				}
+			}
+		}
+		oA.onclick = function() {
+			for (let i = 1; i < oInput.length; i++) {
+				oInput[i].checked = !oInput[i].checked
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>弹出层效果</title>
+    <style>
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: black;
+            opacity: 0.5;
+            display: none;
+        }
+        .win {
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            width:400px;
+            height:200px;
+            margin:-102px 0 0 -202px;
+            border: 4px solid #f90;
+            display: none;
+        }
+        .win h2 {
+            background: #FC0;
+            font-size: 12px;
+            padding: 5px;
+            margin: 0;
+            border-bottom:3px solid #f90;
+        }
+        .close {
+            float: right;
+            background-color: #fff;
+            text-align: center;
+            color:#f90;
+            cursor:pointer;
+            border:1px solid #f90;
+            padding:0 5px;
+        }
+        .btn {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="win">
+        <h2>
+            <span class="title">标题</span>
+            <span class="close" onclick="close()">×</span>
+        </h2>
+    </div>
+    <div class="btn"><button onclick="showWin()">弹出层</button></div>
+    <script>
+        const overlay = document.getElementsByClassName('overlay')[0]
+        const win = document.getElementsByClassName('win')[0]
+        const close = document.getElementsByClassName('close')[0]
+        function showWin() {
+            overlay.style.display = 'block'
+            win.style.display = 'block'
+        }
+        close.onclick =  function() {
+            overlay.style.display = 'none'
+            win.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

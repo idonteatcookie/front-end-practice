@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>自动播放——幻灯片效果</title>
+    <style type="text/css">
+        body,div,ul,li{margin:0;padding:0;}
+        ul{list-style-type:none;}
+        body{font:12px/20px Arial;}
+        .wrapper {
+            width: 490px;
+            height: 170px;
+            position: relative;
+        }
+        .dot {
+            height: 20px;
+            width: 20px;
+            border-radius: 10px;
+            background-color: #ffc59b;
+            color: #fff;
+            position: absolute;
+            bottom: 5px;
+            text-align: center;
+            line-height: 20px;
+            z-index: 1;
+        }
+        #dot1{right:105px;background-color:#ff8b4e;}
+        #dot2{right:80px;}
+        #dot3{right:55px;}
+        #dot4{right:30px;}
+        #dot5{right:5px;}
+        img:not(:first-child) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <img src="http://fgm.cc/learn/lesson4/img/01.jpg" alt="" id="img1">
+        <div id="dot1" class="dot">1</div>
+        <img src="http://fgm.cc/learn/lesson4/img/02.jpg" alt="" id="img2">
+        <div id="dot2" class="dot">2</div>
+        <img src="http://fgm.cc/learn/lesson4/img/03.jpg" alt="" id="img3">
+        <div id="dot3" class="dot">3</div>
+        <img src="http://fgm.cc/learn/lesson4/img/04.jpg" alt="" id="img4">
+        <div id="dot4" class="dot">4</div>
+        <img src="http://fgm.cc/learn/lesson4/img/05.jpg" alt="" id="img5">
+        <div id="dot5" class="dot">5</div>
+    </div>
+    <script type="text/javascript">
+        let cur = 1 // 当前显示图片
+        let timer
+        let timer1
+        const IMG_CNT = 5
+
+        function gradual(opac) {
+            window[`img${cur}`].style.opacity = opac
+            if (opac >= 1) return
+            timer1 = setTimeout(gradual.bind(null, opac + 0.1), 50)
+        }
+
+        function showImg() {
+            for (let i = 1; i <= IMG_CNT; i++) {
+                window[`img${i}`].style.display = 'none'
+                window[`dot${i}`].style.backgroundColor = '#ffc59b'
+            }
+            window[`img${cur}`].style.display = 'block'
+            window[`dot${cur}`].style.backgroundColor = '#ff8b4e'
+            gradual(0)
+        }
+
+        function setTimer() {
+            timer = setInterval(function() {
+                cur++
+                if (cur > IMG_CNT) cur = 1
+                showImg()
+            }, 2000)
+        }
+        setTimer()
+
+        const dots = document.getElementsByClassName('dot')
+        for (let i = 0; i < IMG_CNT; i++) {
+            dots[i].onmouseover = function() {
+                clearInterval(timer)
+                clearTimeout(timer1)
+                if (i + 1 === cur) return
+                cur = i + 1
+                showImg()
+            }
+            dots[i].onmouseout = function() {
+                setTimer()
+            }
+        }
+    </script>
+</body>
+</html>

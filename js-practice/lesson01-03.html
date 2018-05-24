@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>lesson1-03</title>
+    <style>
+        #wrapper {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>3) 函数接收参数并弹出</h1>
+        <div><input type="text" value="北京市"></div>
+        <div><input type="text" value="朝阳市"></div>
+        <button>传参</button>
+    </div>
+    <script>
+        document.getElementsByTagName('button')[0].onclick = function() {
+            alert(document.getElementsByTagName('input')[0].value)
+            alert(document.getElementsByTagName('input')[1].value)
+        }
+    </script>
+</body>
+</html>

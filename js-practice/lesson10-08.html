@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>仿腾讯游戏《英雄杀》官网Flash效果</title>
+    <link rel="stylesheet" type="text/css" href="lesson10-08.css">
+</head>
+<body>
+    <ul class="card-list">
+        <li class="card card-1">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/1.jpg" alt="">
+            <div class="info"><h4>小乔<span>国色天香</span></h4><p>小乔，三国时期的主要女性人物之一。在三国时归属吴国，国色流离、资貌绝伦，是当时有名的东吴美女。</p></div>
+        </li>
+        <li class="card card-2">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/2.jpg" alt="">
+            <div class="info"><h4>潘安<span>花样美男</span></h4><p>潘安，西晋文学家，本名潘岳。中国古代最著名的美男子之首、"金谷二十四友"之首。</p></div>
+        </li>
+        <li class="card card-3">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/3.jpg" alt="">
+            <div class="info"><h4>朱元璋<span>明太祖</span></h4><p>朱元璋，明王朝的开国皇帝，建立了全国统一的封建政权。</p></div>
+        </li>
+        <li class="card card-4">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/4.jpg" alt="">
+            <div class="info"><h4>吕雉<span>吕后</span></h4><p>吕雉，西汉开国皇帝高祖刘邦的原配夫人，中国历史上第一位掌权的女性统治者。</p></div>
+        </li>
+        <li class="card card-5">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/5.jpg" alt="">
+            <div class="info"><h4>诸葛亮<span>卧龙</span></h4><p>诸葛亮，蜀汉丞相，三国时期杰出的政治家、战略家、发明家、军事家。</p></div>
+        </li>
+        <li class="card card-right">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/6.jpg" alt="">
+            <div class="info"><h4>李师师<span>青楼歌妓</span></h4><p>李师师，北宋末年色艺双绝的名妓，其事迹多见于野史，笔记小说。据传曾深受宋徽宗喜爱。</p></div>
+        </li>
+        <li class="card card-right">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/7.jpg" alt="">
+            <div class="info"><h4>陈圆圆<span>乱世红颜</span></h4><p>陈圆圆，名沅，明末清初苏州名姬，浙江金华人氏。"容辞闲雅，额秀頣丰"，有名士大家风度。</p></div>
+        </li>
+        <li class="card not-show">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/8.jpg" alt="">
+            <div class="info"><h4>扁鹊<span>神医</span></h4><p>扁鹊精于内、外、妇、儿、五官等科，应用针灸、按摩、汤药、热熨等法治疗疾病，被尊为医祖。</p></div>
+        </li>
+        <li class="card not-show">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/9.jpg" alt="">
+            <div class="info"><h4>西施<span>西子</span></h4><p>西施，名夷光，春秋时间越国人，今浙江诸暨市城关苎萝村。同范蠡同卒于陶（定陶）。</p></div>
+        </li>
+        <li class="card card-left">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/10.jpg" alt="">
+            <div class="info"><h4>杨延昭<span>天狼星</span></h4><p>杨延昭是北宋抗辽大将杨业的长子，自幼就受到其父抵抗契丹、收复失地的思想影响。</p></div>
+        </li>
+        <li class="card card-left">
+            <img src="http://fgm.cc/learn/lesson10/img/yxs/11.jpg"/>
+            <div class="info"><h4>关羽<span>武圣</span></h4><p>关羽，字云长，本字长生，河东解县人（今山西省运城市），东汉末年三国时期刘备的重要将领。</p></div>
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+        const cards = document.getElementsByClassName('card')
+        const CARDS_NUM = cards.length
+
+        function end() {
+            if (this.className === 'card card-3') {
+                this.className = 'card card-3 card-middle'
+            }
+        }
+
+        for (let i = 0; i < CARDS_NUM; i++) {
+            cards[i].onclick = function() {
+                for (let j = 0; j < CARDS_NUM; j++) {
+                    cards[j].className = 'card not-show'
+                }
+                cards[(i - 4 + CARDS_NUM) % CARDS_NUM].className = 'card card-left'
+                cards[(i - 3 + CARDS_NUM) % CARDS_NUM].className = 'card card-left'
+                cards[(i - 2 + CARDS_NUM) % CARDS_NUM].className = 'card card-1'
+                cards[(i - 1 + CARDS_NUM) % CARDS_NUM].className = 'card card-2'
+                this.className = 'card card-3'
+                cards[(i + 1) % CARDS_NUM].className = 'card card-4'
+                cards[(i + 2) % CARDS_NUM].className = 'card card-5'
+                cards[(i + 3) % CARDS_NUM].className = 'card card-right'
+                cards[(i + 4) % CARDS_NUM].className = 'card card-right'
+            }
+            // cards[i].onmouseover = function() {
+            //     this.addEventListener('transitionend', end.bind(this))
+            // }
+            // cards[i].onmouseout = function() {
+            //     this.removeEventListener('transitionend', end.bind(this))
+            // }
+        }
+    </script>
+
+</body>
+</html>

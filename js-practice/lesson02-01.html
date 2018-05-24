@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>lesson2-01</title>
+    <style>
+        .wrapper {
+            width: 80px;
+            margin: 0 auto
+        }
+        ul {
+            padding: 0;
+            margin-top: 5px;
+            width: 60px;
+            border: 1px solid blue;
+            display: none;
+        }
+        li {
+            font-size: 12px;
+            line-height: 24px;
+            list-style-type: none;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+        li:hover {
+            background-color: #d9e1f6;
+        }
+        #close {
+            border-top: 1px solid blue;
+        }
+        input[type="button"] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>1) 百度输入法</h1>
+    <div class="wrapper">
+        <input type="button" value="输入法" onclick="change()">
+        <ul>
+            <li>手写</li>
+            <li>拼音</li>
+            <li id="close">关闭</li>
+        </ul>
+    </div>
+    <script>
+        const ul = document.getElementsByTagName('ul')[0]
+        function change() {
+            console.log(ul.style.display)
+            if (ul.style.display === 'block') {
+                ul.style.display = 'none'
+            } else {
+                ul.style.display = 'block'
+            }
+        }
+        document.getElementById('close').onclick = function() {
+            ul.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

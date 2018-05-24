@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>简易网页时钟</title>
+	<style type="text/css">
+		.clock {
+			background-color: #ff7c6e;
+			height: 29px;
+			padding: 20px;
+			width: 200px;
+			margin: 0 auto;
+			border-radius: 5px;
+		}
+		input {
+			height: 25px;
+			width: 35px;
+			text-align: center;
+			border: 2px inset #c5c5c5;
+			font-size: 14px;
+		}
+		span {
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="clock">
+		<input type="text" name="hour" value="10"> <span>时</span>
+		<input type="text" name="min" value="04"> <span>分</span>
+		<input type="text" name="sec" value="55"> <span>秒</span>
+	</div>
+	<script type="text/javascript">
+		const input = document.getElementsByTagName('input')
+		const date = new Date()
+		input[0].value = date.getHours()
+		input[1].value = date.getMinutes()
+		input[2].value = date.getSeconds()
+		const clock = setInterval(function() {
+			const date = new Date()
+			input[0].value = date.getHours()
+			input[1].value = date.getMinutes()
+			input[2].value = date.getSeconds()
+		}, 1000)
+	</script>
+</body>
+</html>

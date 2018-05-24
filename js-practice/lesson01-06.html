@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>lesson1-06</title>
+    <style>
+        .wrapper {
+            width: 200px;
+            margin: 0 auto;
+            font-size: 12px;
+        }
+        .tips {
+            background-color: #ffefa4;
+            border: 1px solid #f90;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>6) 记住密码提示框</h1>
+        <label><input type="checkbox">两周内自动登陆</label>
+        <div class="tips">为了您的信息安全，请不要在网吧或公用电脑上使用此功能！</div>
+    </div>
+    <script>
+        const label = document.getElementsByTagName('label')[0]
+        const tips = document.getElementsByClassName('tips')[0]
+        label.onmouseover = function() {
+            tips.style.display = 'block'
+        }
+        label.onmouseout = function() {
+            tips.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

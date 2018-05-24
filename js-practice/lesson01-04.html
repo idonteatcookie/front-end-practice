@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>lesson1-04</title>
+    <style>
+        #wrapper {
+            width: 330px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: black;
+            margin-right: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <span>4) 用循环将三个Div变成红色</span>
+        <p><button>点击将div变成红色</button></p>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <script>
+        document.getElementsByTagName('button')[0].onclick = function() {
+            const boxs = document.getElementsByClassName('box')
+            for (let i = 0; i < boxs.length; i++) {
+                boxs[i].style.backgroundColor = 'red'
+            }
+        }
+    </script>
+</body>
+</html>

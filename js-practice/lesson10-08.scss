@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.not-show {
+    display: none;
+}
+.card-list {
+    position: relative;
+    background-color: #a0a0a0;
+    height: 500px;
+
+    .card {
+        list-style-type: none;
+        border: 2px #000 solid;
+        border-radius: 5px;
+        position: absolute;
+        width: 220px;
+        height: 284px;
+        overflow: hidden;
+        background-color: #000;
+        transition: transform 500ms, left 500ms;
+        // display: none;
+
+        &:hover {
+            img {
+                opacity: 1;
+            }
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            opacity: 0.5;
+            left: 0;
+            transition: opacity 500ms;
+        }
+
+        .info {
+            background-color: #424242ab;
+            position: absolute;
+            font-size: 12px;
+            // bottom: -100px;
+            transform: translateY(284px);
+            height: 90px;
+            color: #fff;
+            padding: 5px;
+            transition: transform 1s;
+
+            h4 {
+                border-bottom: 1px #a5a5a5 solid;
+                line-height: 18px;
+                height: 18px;
+                font-weight: bold;
+                margin-bottom: 2px;
+
+                span {
+                    color: #ff4a1a;
+                    padding-left: 8px;
+                    font-weight: 100;
+                }
+
+            }
+            p {
+                text-indent: 2em;
+                font-weight: 100;
+            }
+        }
+    }
+    .card-1 {
+        left: 0;
+        transform: scale(0.6);
+        z-index: 3;
+        display: block;
+    }
+    .card-2 {
+        transform: scale(0.8);
+        left: 120px;
+        z-index: 4;
+    } 
+    .card-3 {
+        left: 320px;
+        z-index: 5;
+        img {
+            opacity: 1;
+        }
+        &:hover {
+            .info {
+                transform: translateY(284 - 90px);
+            }
+        }
+    }
+    .card-4 {
+        transform: scale(0.8);
+        left: 520px;
+        z-index: 4;
+    }
+    .card-5 {
+        transform: scale(0.6);
+        left: 640px;
+        z-index: 3;
+    }
+    .card-left {
+        transform: scale(0.4);
+        left: 40px;
+        z-index: 1;
+    }
+    .card-right {
+        transform: scale(0.4);
+        left: 600px;
+        z-index: 2;
+    }
+}

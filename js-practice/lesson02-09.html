@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>单一按钮显示/隐藏一播放列表收缩展开</title>
+</head>
+<style type="text/css">
+body {
+	font: 12px/1.5 Tahoma;
+}
+.wrapper {
+	width: 200px;
+	margin: 0 auto;
+	border: 1px solid #aaa;
+}
+ul {
+	padding: 0;
+	margin: 0;
+	display: none;
+}
+li {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+	color: #6b7980;
+	background-color: #e9edf2;
+	padding-left: 10px;
+	display: block;
+	line-height: 25px;
+}
+a:hover {
+	text-decoration: underline;
+}
+header {
+	font-size: 14px;
+	line-height: 30px;
+	padding-left: 10px;
+	color: #57646E;
+	background: #ced3d7 url(img/02-09-ico.gif) 180px 15px no-repeat;
+	border: 1px solid #fff;
+	cursor: pointer;
+}
+header.open {
+	background: #ced3d7 url(img/02-09-ico.gif) 180px -12px no-repeat;
+}
+ul.open {
+	display: block;
+}
+</style>
+<body>
+	<div class="wrapper">
+		<header>
+			播放列表...
+		</header>
+		<ul>
+			<li><a href="javascript:;">玩家之徒 - 蔡依林</a></li>
+	        <li><a href="javascript:;">原谅我就是这样的女生 - 戴佩妮</a></li>
+	        <li><a href="javascript:;">猜不透 - 丁当</a></li>
+	        <li><a href="javascript:;">自导自演 - 周杰伦</a></li>
+	        <li><a href="javascript:;">浪漫窝 - 弦子</a></li>
+	        <li><a href="javascript:;">流年 - 王菲</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		document.getElementsByTagName('header')[0].onclick = function() {
+			if (this.className === '') {
+				this.className = 'open'
+				document.getElementsByTagName('ul')[0].className = 'open'
+			} else {
+				this.className = ''
+				document.getElementsByTagName('ul')[0].className = ''
+			}	
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>lesson1-01</title>
+    <style>
+        #box {
+            margin: 10px auto;
+            height: 100px;
+            width: 100px;
+            background-color: #000;
+        }
+        #wrapper {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>1) 控制Div属性</h1>
+        <input type="button" value="变宽" id="handleWidth"></input>
+        <input type="button" value="变高" id="handleHeight"></input>
+        <input type="button" value="变色" id="handleColor"></input>
+        <input type="button" value="隐藏" id="handleHidden"></input>
+        <input type="button" value="重置" id="handleReset"></input>
+        <div id="box"></div>
+    </div>
+    <script>
+        const handleWidth = document.getElementById('handleWidth')
+        const handleHeight = document.getElementById('handleHeight')
+        const handleColor = document.getElementById('handleColor')
+        const handleHidden = document.getElementById('handleHidden')
+        const handleReset = document.getElementById('handleReset')
+        const box = document.getElementById('box')
+        handleWidth.onclick = function() {
+            box.style.width = '200px'
+        }
+        handleHeight.onclick = function() {
+            box.style.height = '200px'
+        }
+        handleColor.onclick = function() {
+            box.style.backgroundColor = '#f00'
+        }
+        handleHidden.onclick = function() {
+            box.style.display = 'none'
+        }
+        handleReset.onclick = function() {
+            box.style.width = '100px'
+            box.style.height = '100px'
+            box.style.backgroundColor = '#000'
+            box.style.display = 'block'
+        }
+    </script>
+</body>
+</html>

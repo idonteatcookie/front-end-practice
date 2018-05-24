@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>简易JS年历</title>
+</head>
+<style type="text/css">
+body {
+	font: 12px/1.5 Tahoma;
+}
+.clearfix:after {
+	clear: both;
+	content: "";
+	display: table;
+}
+.wrapper {
+	background-color: #eaeaea;
+	width: 248px;
+	border: 5px #eaeaea solid;
+	margin: 0 auto;
+}
+.line div {
+	list-style-type: none;
+	background-color: #424242;
+	color: #fff;
+	width: 40px;
+	height: 40px;
+	float: left;
+	margin: 5px;
+	text-align: center;
+	padding: 5px;
+	line-height: 1.3;
+	font-size: 14px;
+	border: 1px solid #000;
+}
+.num {
+	display: block;
+	font-weight: bold;
+	font-size: 18px;
+}
+.line div.current, .current .num, .current .en{
+	color: #F69;
+    background-color: #fff;
+}
+.content {
+	padding: 5px;
+	margin: 5px;
+	color: #666;
+	border: 1px solid #fff;
+	line-height: 20px;
+	font-size: 12px;
+}
+.content .title {
+	font-weight: bold;
+	font-size: 14px;
+}
+.content p {
+	margin: 0;
+}
+</style>
+<body>
+	<div class="wrapper">
+		<div class="line clearfix">
+			<div class="day"><span class="num">1</span><span class="en">JAN</span></div>
+			<div class="day"><span class="num">2</span><span class="en">FER</span></div>
+			<div class="day"><span class="num">3</span><span class="en">MAR</span></div>
+			<div class="day"><span class="num">4</span><span class="en">APR</span></div>
+		</div>
+		<div class="line clearfix">
+			<div class="day"><span class="num">5</span><span class="en">MAY</span></div>
+			<div class="day current"><span class="num">6</span><span class="en">JUN</span></div>
+			<div class="day"><span class="num">7</span><span class="en">JUL</span></div>
+			<div class="day"><span class="num">8</span><span class="en">AUG</span></div>
+		</div>
+		<div class="line clearfix">
+			<div class="day"><span class="num">9</span><span class="en">SEP</span></div>
+			<div class="day"><span class="num">10</span><span class="en">OCT</span></div>
+			<div class="day"><span class="num">11</span><span class="en">NOV</span></div>
+			<div class="day"><span class="num">12</span><span class="en">DEC</span></div>
+		</div>
+		<div class="content">
+			<span class="title"><strong>6</strong>月节日</span>
+			<p>端午节：6月4日至6日放假3天。</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		const days = document.getElementsByClassName('day')
+		const info = [
+			"元旦：1月1日至3日放假三天。",
+			"春节：2月2日至8日放假7天。",
+			"妇女节：3月8日妇女节，与我无关。",
+			"清明节：4月3日至5日放假3天",
+			"劳动节：4月30日至5月2日放假3天。",
+			"端午节：6月4日至6日放假3天。",
+			"小暑：7月7日小暑。不放假。",
+			"七夕节：8月6日七夕节。不放假。",
+			"中秋节：9月10日至12日放假3天。",
+			"国庆节：10月1日至7日放假7天。",
+			"立冬：11月8日立冬。不放假。",
+			"艾滋病日:12月1日<br />废除奴隶制国际日:12月2日。"
+		];
+		for (let i = 0; i < days.length; i++) {
+			days[i].onmouseover = function() {
+				for (let j = 0; j < days.length; j++) {
+					days[j].className = 'day'
+				}
+				this.className = 'day current'
+				const content = document.getElementsByClassName('content')[0]
+				content.getElementsByTagName('strong')[0].innerHTML = i + 1
+				content.getElementsByTagName('p')[0].innerHTML = info[i]
+			}
+		}
+	</script>
+</body>
+</html>

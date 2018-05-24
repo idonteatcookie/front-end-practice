@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>鼠标移过，修改图片路径</title>
+</head>
+<style type="text/css">
+body {
+	font: 12px/1.5 Tahoma;
+	box-sizing: border-box;
+	background-color: #000;
+}
+.clearfix:after {
+	clear: both;
+	content: "";
+	display: table;
+}
+ul {
+	width: 212px;
+	margin: 0 auto;
+	padding: 7px 4px 4px 7px;
+	background-color: #fff;
+	border-radius: 3px;
+}
+li {
+	list-style-type: none;
+	margin: 0 3px 3px 0;
+	float: left;
+	border-radius: 5px;
+	position: relative;
+}
+li a {
+	display: block;
+	width: 50px;
+	height: 50px;
+}
+li img {
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+}
+.first img {
+	width: 156px;
+	height: 156px;
+	display: block;
+}
+.first div {
+	background: url(http://fgm.cc/learn/lesson2/img/loading.gif) 50% 50% no-repeat;
+	z-index: 1;
+	width: 156px;
+	height: 156px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+</style>
+<body>
+	<ul class="clearfix">
+		<li class="first"><img src="http://fgm.cc/learn/lesson2/img/big_1.jpg" alt=""><div id="loading"></div></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_1.jpg" alt="1"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_2.jpg" alt="2"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_3.jpg" alt="3"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_4.jpg" alt="4"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_5.jpg" alt="5"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_6.jpg" alt="6"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_7.jpg" alt="7"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_8.jpg" alt="8"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_9.jpg" alt="9"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_10.jpg" alt="10"></a></li>
+		<li><a href="javascript:;"><img src="http://fgm.cc/learn/lesson2/img/small_11.jpg" alt="11"></a></li>
+	</ul>
+	<script type="text/javascript">
+		const imgs = document.getElementsByTagName('img')
+		const loading = document.getElementById('loading')
+		for (let i = 1; i < imgs.length; i++) {
+			imgs[i].onmouseover = function() {
+				var img = new Image();
+				img.src = imgs[0].src = this.src.replace(/small/,"big");
+				loading.style.display = "block";
+				img.complete ? loading.style.display = "none" : (imgs[0].onload = function() {loading.style.display = "none"})
+
+			}
+		}
+	</script>
+</body>
+</html>

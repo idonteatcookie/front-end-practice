@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>网页计算器</title>
+	<style type="text/css">
+		body {
+			font: 12px/1.5 Tahoma;
+		}
+		.clearfix:after {
+			clear: both;
+			content: "";
+			display: table;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			position: relative;
+		}
+		p {
+			padding: 0;
+			margin: 0;
+		}
+		a {
+			text-decoration: none;
+			color: #fff;
+		}
+		.wrapper {
+			width: 218px;
+			margin: 10px auto;
+			border: 2px solid #ababab;
+    		border-radius: 3px;
+		}
+		.screen {
+			width: 198px;
+			background: url(http://fgm.cc/learn/lesson3/img/inputBg.jpg);
+			text-align: right;
+			/*line-height: 40px;*/
+			padding: 2px 4px;
+    		border: 6px inset #cacaca;
+		}
+		.input {
+			font-size: 28px;
+			font-weight: bold;
+		}
+		.expr {
+			font-size: 12px;
+			color: #6f6f6f
+		}
+		.btn-group {
+			padding: 10px 0 0 10px;
+			background-color: #eaeaea;
+		}
+		.btn-1 {
+			background: #000;
+		    width: 40px;
+		    height: 22px;
+		    line-height: 22px;
+		    float: left;
+		    margin: 0 10px 10px 0;
+		    text-align: center;
+		    border: #d8d8d8 1px groove;
+		    border-radius: 3px;
+		    display: block;
+		}
+		.btn-equ {
+			position: absolute;
+			height: 56px;
+			line-height: 56px;
+			right: 0px;
+			bottom: 0px;
+		}
+		.btn-zero {
+			width: 92px;
+		}
+		.btn-1:active {
+			border-style: inset;
+			background-color: #272727;
+			line-height: 21px;
+		}
+		.btn-equ:active {
+			line-height: 55px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="screen">
+			<p><span class="expr">3+999*17</span></p>
+			<p><span class="input">0</span></p>
+		</div>
+		<div class="btn-group">
+			<ul class="clearfix">
+				<li class="btn-1"><a href="javascript:;">c</a></li>
+				<li class="btn-1"><a href="javascript:;">%</a></li>
+				<li class="btn-1"><a href="javascript:;">/</a></li>
+				<li class="btn-1"><a href="javascript:;">*</a></li>
+				<li class="btn-1"><a href="javascript:;">7</a></li>
+				<li class="btn-1"><a href="javascript:;">8</a></li>
+				<li class="btn-1"><a href="javascript:;">9</a></li>
+				<li class="btn-1"><a href="javascript:;">-</a></li>
+				<li class="btn-1"><a href="javascript:;">4</a></li>
+				<li class="btn-1"><a href="javascript:;">5</a></li>
+				<li class="btn-1"><a href="javascript:;">6</a></li>
+				<li class="btn-1"><a href="javascript:;">+</a></li>
+				<li class="btn-1"><a href="javascript:;">1</a></li>
+				<li class="btn-1"><a href="javascript:;">2</a></li>
+				<li class="btn-1"><a href="javascript:;">3</a></li>
+				<li class="btn-1 btn-equ"><a href="javascript:;">=</a></li>
+				<li class="btn-1 btn-zero"><a href="javascript:;">0</a></li>
+				<li class="btn-1"><a href="javascript:;">.</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
