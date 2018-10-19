@@ -13,12 +13,11 @@
     <canvas id="canvas"></canvas>
     <p>
         <button onclick="start()">开始</button>
-        <button onclick="switch_ai()">自动</button>
+        <button onclick="switchAI()">自动</button>
     </p>
     <p>
         <label for="range">速度</label>
         <input type="range" id="range" min="50" max="1000" onchange="changeSpeed(this.value)">
-
     </p>
     <script>
         const GRID_WIDTH = 10;  // 格子的边长
@@ -48,7 +47,7 @@
             newInterval = 1000 - v + 50;
         }
 
-        function switch_ai() { isAI = !isAI; }
+        function switchAI() { isAI = !isAI; }
 
         function initialize() {
             snack = [ [2, 2], [3, 2], [4, 2]]; // 初始化一条🐍
@@ -198,22 +197,7 @@
             } while(hasChange);
             return sp;
         }
-
-        /**
-        if 存在蛇头到苹果的路径
-            虚拟蛇去尝试吃苹果
-            if 吃完苹果后能找到蛇头到蛇尾的路径
-                BFS到蛇尾
-            else if 存在蛇头到蛇尾的路径
-                走蛇头到蛇尾的最长路径
-            else
-                随机一个方向
-        else if 存在蛇头到蛇尾的路径
-            走蛇头到蛇尾的最长路径
-        else
-            随机一个方向
-        **/
-
+        // 获得 0 - n-1 的一个随机排列
         function getRandomPermutation(n) {
             let ans = [];
             let vis = [];
@@ -229,7 +213,7 @@
             }
             return ans;
         }
-
+        // 获得一个数组的最后一个元素
         function getLastEle(arr) {
             return arr[arr.length - 1];
         }
