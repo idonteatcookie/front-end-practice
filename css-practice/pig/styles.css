@@ -14,7 +14,7 @@ body {
     position: relative;
     left: 50%;
     transform: translate(-50%,-50%);
-    background-color: #eee; 
+    /*background-color: #eee; */
 }
 
 .head {
@@ -337,7 +337,7 @@ body {
     width: 0;
     border-width: 8px 31px;
     border-style: solid;
-    border-color: #D35433 transparent transparent transparent;
+    border-color: #fd7030 transparent transparent transparent;
     z-index: 10;
     position: absolute;
     top: 7px;
