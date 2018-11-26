@@ -1,0 +1,15 @@
+{
+  "name": "webpack-study-note-1",
+  "version": "1.0.0",
+  "description": "webpack学习笔记",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "git repository": "x",
+  "author": "G-lory",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.12.0"
+  }
+}
