@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack"
   },
-  "git repository": "x",
+  "git repository": "https://github.com/G-lory/front-end-practice/tree/master/webpack/study-notes",
   "author": "G-lory",
   "license": "ISC",
   "devDependencies": {
