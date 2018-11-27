@@ -12,7 +12,7 @@ module.exports = {
     module: { // 配置loader
         rules: [
             {
-                test: /\.jsx?/,             // 正则表达式 匹配文件名
+                test: /\.js/,             // 正则表达式 匹配文件名
                 exclude: /node_modules/,    // exclude 表示排除的路径 也可以添加 include 字段设置匹配路径
                 use: {
                     loader: 'babel-loader', // 对符合上面约束条件的文件 使用的 loader
