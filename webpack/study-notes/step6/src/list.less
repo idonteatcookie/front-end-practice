@@ -1,0 +1,22 @@
+@import './spritesmith-generated/sprite.less';
+
+.listItem {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #d6d6d6;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  span {
+    flex-grow: 1;
+    color: #9c9c9c;
+  }
+
+  button {
+    .sprite(@delete);
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+}
