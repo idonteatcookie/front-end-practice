@@ -1,5 +1,6 @@
 .DS_Store
 node_modules/
+bower_components/
 dist/
 npm-debug.log*
 yarn-debug.log*
@@ -13,3 +14,4 @@ package-lock.json
 *.ntvs*
 *.njsproj
 *.sln
+**/.idea
