@@ -1,0 +1,105 @@
+<!-- 
+  简单实现 vue 双向绑定
+  [面试题：你能写一个Vue的双向数据绑定吗？](https://juejin.im/post/5acc17cb51882555745a03f8) 学习笔记
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-two-way-binding</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="number1" />
+        <span> + </span>
+        <input type="text" v-model="number2" />
+        <button v-click="sum">计算</button>
+        <h2 v-bind="result"></h2>
+    </div>
+    <script>
+        function MyVue(options) {
+            this._init(options);
+        }
+
+        MyVue.prototype._init = function(options) {
+            this.$options = options;
+            this.$el = document.querySelector(options.el);
+            this.$data = options.data;
+            this.$methods = options.methods;
+            
+            this._binding = {};
+            this._obverse(this.$data);
+            this._compile(this.$el);
+        }
+
+        MyVue.prototype._obverse = function(obj) {
+            Object.keys(obj).forEach(key => {
+                var value = obj[key];
+                let binding = this._binding;
+                binding[key] = {
+                    directives: [] // 存放监听器的集合
+                };
+                Object.defineProperty(obj, key, {
+                    get() {
+                        console.log('get', key, value);
+                        return value;
+                    },
+                    set(newVal) {
+                        console.log('set', key, newVal);
+                        if (value !== newVal) {
+                            value = newVal;
+                            binding[key].directives.forEach(w => w.update(newVal));
+                        }
+                    }
+                })
+            })
+        }
+
+        MyVue.prototype._compile = function(root) {
+            root.children && [...root.children].forEach(node => {
+                if (node.hasAttribute('v-bind')) {
+                    // 绑定了 vm 的值 侦听 vm 值的变化
+                    let key = node.getAttribute('v-bind');
+                    this._binding[key].directives.push(new Watcher(node, 'innerHTML', this, key));
+                }
+                if (node.hasAttribute('v-click')) {
+                    // 监听点击事件
+                    let key = node.getAttribute('v-click');
+                    let method = this.$methods[key].bind(this.$data);
+                    node.addEventListener('click', method);
+                }
+                if (node.hasAttribute('v-model') && (node.tagName = 'INPUT' || node.tagName == 'TEXTAREA')) {
+                    let key = node.getAttribute('v-model');
+                    this._binding[key].directives.push(new Watcher(node, 'innerHTML', this, key));
+                    node.addEventListener('input', (e) => {
+                        this.$data[key] = e.target.value;
+                    });
+                }
+            })
+        }
+
+        function Watcher(el, attr, vm, value) { // dom, dom 属性, vm, vm 属性
+            this.$el = el;
+            this.$attr = attr;
+        }
+
+        Watcher.prototype.update = function(val) {
+            this.$el[this.$attr] = val;
+        }
+
+        new MyVue({
+            el: '#app',
+            data: {
+                number1: 0,
+                number2: 0,
+                result: 0
+            },
+            methods: {
+                sum() {
+                    this.result = Number(this.number1) + Number(this.number2);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
