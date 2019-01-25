@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NavLink And PureComponent</title>
+
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+
+  <style>
+    .menu-link {
+      display: inline-block;
+      width: 100px;
+      text-decoration: none;
+      text-align: center;
+      background: #dedede;
+    }
+    .menu-link.active {
+      background: tomato;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    // import ReactRouterDOM, { HashRouter, Route } from 'react-router-dom';
+    // import React, { Component, PureComponent } from 'react';
+
+    const { HashRouter, Route, NavLink } =  ReactRouterDOM;
+    const { Component, PureComponent } =  React;
+
+    class Menu extends PureComponent {
+      render() {
+        return (
+          <div>
+            <NavLink className="menu-link" activeClassName="active" activeStyle={{color: '#fff'}} to='/home'>首页</NavLink>
+            <NavLink className="menu-link" activeClassName="active" activeStyle={{color: '#fff'}} to='/help'>帮助页</NavLink>
+          </div>
+        );
+      }
+    }
+
+    class App extends PureComponent {
+      render() {
+        return (
+          <HashRouter>
+            <div>
+            <Route path="/:place" component={Menu} />
+            <Route path='/home' component={ () => <div>首页内容</div> } />
+            <Route path='/help' component={ () => <div>帮助页内容</div> } />
+            </div>
+          </HashRouter>
+        );
+      }
+    }
+
+    ReactDOM.render(
+        <App />,
+        document.getElementById('app')
+    );
+  </script>
+</body>
+</html>

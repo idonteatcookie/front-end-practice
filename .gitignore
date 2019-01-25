@@ -6,6 +6,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
+others/
 
 # Editor directories and files
 .idea
@@ -14,4 +15,3 @@ package-lock.json
 *.ntvs*
 *.njsproj
 *.sln
-**/.idea
