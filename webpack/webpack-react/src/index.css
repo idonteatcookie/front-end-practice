@@ -1,0 +1,13 @@
+.content {
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 15px;
+    color: #fff;
+    background: tomato;
+    text-align: center;
+}
+
+body {
+    background: url(./assets/mycf.jpg);
+}
