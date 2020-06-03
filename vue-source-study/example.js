@@ -6,7 +6,8 @@ let vm = new Vue({
         //     val: 1
         // },
         number: 1,
-        title: 'Vue响应式'
+        title: 'Vue响应式',
+        arr: [1,2]
     },
     computed: {
         numberPlusOne() {
@@ -24,7 +25,7 @@ let vm = new Vue({
         }
     },
     render() {
-        console.log('render', this.title, this.number, this.numberPlusOne);
+        console.log('render', this.title, this.number, this.numberPlusOne, this.arr);
     }
 });
 
@@ -32,11 +33,13 @@ const unWatch = vm.$watch('numberPlusOne', function(newVal, oldVal) {
     return console.log('watch outer: numberPlusOne', newVal, oldVal);
 });
 
-vm.title = '测试修改';
-vm.number = 233;
-vm.number = 2333;
+// vm.title = '测试修改';
+// vm.number = 233;
+// vm.number = 2333;
 
-setTimeout(() => {
-    unWatch();
-    vm.number = 23333;
-});
+// setTimeout(() => {
+//     unWatch();
+//     vm.number = 23333;
+// });
+
+vm.arr.push(2);
