@@ -1,5 +1,5 @@
 import { pushTarget, popTarget } from './dep.js';
-import { isObject } from './util.js';
+import { isObject, parsePath, remove } from './util.js';
 import { queueWatcher } from './scheduler.js';
 
 let uid = 0;
@@ -30,8 +30,14 @@ export default class Watcher {
         this.newDeps = [];
         this.depIds = new Set();
         this.newDepIds = new Set();
-        // getter 更新时运行的函数
-        this.getter = expOrFn;
+        this.expression = '';
+        if (typeof expOrFn === 'function') {
+            // getter 更新时的求值函数
+            this.getter = expOrFn;
+        } else {
+            // 比如 'a.b' 就是 () => this.a.b
+            this.getter = parsePath(expOrFn);
+        }
         this.value = this.lazy ? undefined : this.get();
     }
     get() {
@@ -93,7 +99,7 @@ export default class Watcher {
             if (value !== this.value || isObject(value) || this.deep) {
                 const oldValue = this.value;
                 this.value = value;
-                if (this.cb.call(this.vm, value, oldValue));
+                this.cb.call(this.vm, value, oldValue)
             }
         }
     }
@@ -108,6 +114,19 @@ export default class Watcher {
         let i = this.deps.length;
         while (i--) {
             this.deps[i].depend();
+        }
+    }
+    // 删除该Watcher
+    teardown() {
+        if (this.active) {
+            if (!this.vm._isBeingDestroyed) {
+                remove(this, this.vm._watcher, this);
+            }
+            let i = this.deps.length;
+            while (i--) {
+                this.deps[i].removeSub(this);
+            }
+            this.active = false;
         }
     }
 }

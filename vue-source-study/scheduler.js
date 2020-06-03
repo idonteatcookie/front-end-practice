@@ -26,7 +26,6 @@ function flushSchedulerQueue() {
         has[id] = null;
         watcher.run();
     }
-
     resetSchedulerState();
 }
 

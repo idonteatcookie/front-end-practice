@@ -1,6 +1,7 @@
 import { observe } from './observer.js';
 import Dep from './dep.js';
 import Watcher from './watcher.js';
+import { isPlainObject } from './util.js';
 
 // 一个空函数
 function noop() {}
@@ -45,6 +46,9 @@ export function initState(vm) {
     }
     if (opts.computed) {
         initComputed(vm, opts.computed);
+    }
+    if (opts.watch) {
+        initWatch(vm, opts.watch)
     }
 }
 
@@ -94,6 +98,79 @@ function createComputedGetter(key) {
                 watcher.depend();
             }
             return watcher.value;
+        }
+    }
+}
+
+function initWatch(vm, watch) {
+    for (const key in watch) {
+        const handler = watch[key];
+        if (Array.isArray(handler)) { // ???
+            for (let i = 0; i < handler.length; i++) {
+                createWatcher(vm, key, handler[i]);
+            }
+        } else {
+            createWatcher(vm, key, handler);
+        }
+    }
+}
+/*
+handler 可以是对象
+vm.$watch('a.b', {
+    handler: foo,
+    immediate: true,
+    deep: true
+})
+也可以是数组
+watch: {
+    watchKey: [
+        function a(v) {
+            console.log(111, v);
+        },
+        function b(v) {
+            console.log(222, v);
+        },
+        function c(v) {
+            console.log(333, v);
+        },
+    ]
+},
+ */
+function createWatcher(vm, expOrFn, handler, options) {
+    if (isPlainObject(handler)) {
+        options = handler;
+        handler = handler.handler;
+    }
+    if (typeof handler === 'string') {
+        handler = vm[handler];
+    }
+    return vm.$watch(expOrFn, handler, options);
+}
+
+export function stateMixin(Vue) {
+    const dataDef = {};
+    dataDef.get = function () { return this._data; };
+    // 只有get 不能set
+    Object.defineProperty(Vue.prototype, '$data', dataDef);
+    
+    Vue.prototype.$watch = function(expOrFn, cb, options) {
+        const vm = this;
+        if (isPlainObject(cb)) {
+            return createWatcher(vm, expOrFn, cb, options);
+        }
+        options = options || {};
+        options.user = true;
+        const watcher = new Watcher(vm, expOrFn, cb, options);
+        if (options.immediate) {
+            try {
+                cb.call(vm, watch.value);
+            } catch (e) {
+                
+            }
+        }
+
+        return function unWatchFn() {
+            watcher.teardown();
         }
     }
 }
