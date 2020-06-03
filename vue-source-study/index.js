@@ -2,6 +2,7 @@ import { initState } from './state.js';
 import Watcher from './watcher.js';
 
 let uid = 0;
+function noop() {}
 
 function Vue (options) {
     this._init(options)
@@ -16,7 +17,7 @@ function initMixin(Vue) {
         vm.$options = options;
         initState(vm);
 
-        new Watcher(vm, vm._render, true /* isRenderWatcher */ );
+        new Watcher(vm, vm._render, noop, {}, true /* isRenderWatcher */ );
     }
 }
 
@@ -24,15 +25,22 @@ initMixin(Vue);
 
 let vm = new Vue({
     data: {
-        number: {
-            val: 1
-        },
+        // number: {
+        //     val: 1
+        // },
+        number: 1,
         title: 'Vue响应式'
     },
+    computed: {
+        numberPlusOne() {
+            return this.number + 1;
+        }
+    },
     render() {
-        console.log(this.title, this.number.val);
+        console.log(this.title, this.number, this.numberPlusOne);
     }
 });
 
-vm.title = '测试修改';
-vm.number.val = 233;
+// vm.title = '测试修改';
+vm.number = 233;
+vm.number = 2333;

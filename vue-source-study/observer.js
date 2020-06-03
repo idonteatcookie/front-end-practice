@@ -23,7 +23,6 @@ export function defineReactive(obj, key) {
         enumerable: true,
         configurable: true,
         get: function reactiveGetter() {
-            // console.log('get')
             const value = val;
             if (Dep.target) {
                 dep.depend();
@@ -34,7 +33,6 @@ export function defineReactive(obj, key) {
             return value;
         },
         set: function reactiveSetter(newVal) {
-            // console.log('set', val, newVal)
             const value = val;
             if (newVal === value || (newVal !== newVal && value !== value)) {
                 return

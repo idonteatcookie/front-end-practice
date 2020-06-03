@@ -1,4 +1,6 @@
 import { observe } from './observer.js';
+import Dep from './dep.js';
+import Watcher from './watcher.js';
 
 // 一个空函数
 function noop() {}
@@ -40,5 +42,58 @@ export function initState(vm) {
         initData(vm);
     } else {
         observe(vm._data = {}, true /* asRootData */);
+    }
+    if (opts.computed) {
+        initComputed(vm, opts.computed);
+    }
+}
+
+// computed 的 Watcher 选项
+const computedWatcherOptions = { lazy: true }
+
+function initComputed(vm, computed) {
+    const watchers = vm._computedWatchers = Object.create(null);
+
+    for (const key in computed) {
+        const userDef = computed[key];
+        // 如果是一个函数 就作为getter 否则应该是一个有get属性的对象
+        const getter = typeof userDef === 'function' ? userDef : userDef.get;
+        // 每一个计算属性都是一个 Watcher
+        watchers[key] = new Watcher(
+            vm,
+            getter || noop,
+            noop,
+            computedWatcherOptions
+        );
+
+        if (!(key in vm)) {
+            defineComputed(vm, key, userDef);
+        }
+    }
+}
+
+export function defineComputed(target, key, userDef) {
+    if (typeof userDef === 'function') {
+        sharedPropertyDefinition.get = createComputedGetter(key);
+    } else {
+        sharedPropertyDefinition.get = userDef.get 
+            ? createComputedGetter(key)
+            : noop;
+    }
+    Object.defineProperty(target, key, sharedPropertyDefinition);
+}
+
+function createComputedGetter(key) {
+    return function computedGetter() {
+        const watcher = this._computedWatchers && this._computedWatchers[key];
+        if (watcher) {
+            if (watcher.dirty) {
+                watcher.evaluate();
+            }
+            if (Dep.target) {
+                watcher.depend();
+            }
+            return watcher.value;
+        }
     }
 }
